@@ -1,1 +1,1 @@
-docker push mohitsethi/jupyternotebook:latest
+docker push mohitsethi/python-numpy:latest

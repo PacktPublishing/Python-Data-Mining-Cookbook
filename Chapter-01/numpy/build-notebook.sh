@@ -1,1 +1,1 @@
-docker build . -t mohitsethi/jupyternotebook:latest
+docker build . -t mohitsethi/python-numpy:latest
