@@ -1,25 +1,14 @@
-FROM jupyter/base-notebook
-
-USER root
-
-# Install all OS dependencies for fully functional notebook server
-RUN apt-get update && apt-get install -yq --no-install-recommends \
-    git \
-    vim \
-    jed \
-    emacs \
-    build-essential \
-    python-dev \
-    unzip \
-    libsm6 \
-    pandoc \
-    texlive-latex-base \
-    texlive-latex-extra \
-    texlive-fonts-extra \
-    texlive-fonts-recommended \
-    texlive-generic-recommended \
-    texlive-xetex \
-    libxrender1 \
-    inkscape \
-    && apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+FROM python:2.7-alpine
+RUN apk add --no-cache g++ freetype-dev libpng-dev && \
+    ln -s /usr/include/locale.h /usr/include/xlocale.h && \
+    pip install \
+        cython==0.25.2 \
+        jupyter==1.0.0 \
+        matplotlib==1.5.1 \
+        numpy==1.12.0 && \
+    pip install pandas==<%= pandas %>
+EXPOSE 8888
+WORKDIR /notebooks
+VOLUME /notebooks
+HEALTHCHECK CMD ["curl", "-f", "http://localhost:8888/"]
+CMD jupyter notebook --ip 0.0.0.0 --no-browser
