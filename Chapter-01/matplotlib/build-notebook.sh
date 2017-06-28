@@ -1,1 +1,1 @@
-docker build . -t mohitsethi/python-pandas:latest
+docker build . -t mohitsethi/python-matplotlib:latest
