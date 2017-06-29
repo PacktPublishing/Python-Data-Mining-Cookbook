@@ -1,1 +1,1 @@
-docker push mohitsethi/python-pandas:latest
+docker push mohitsethi/python-matplotlib:latest
